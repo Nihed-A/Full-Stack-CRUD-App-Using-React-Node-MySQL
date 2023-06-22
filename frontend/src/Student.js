@@ -12,6 +12,19 @@ import {Link} from'react-router-dom';
 
     }, []
     )
+
+    const handleDelete = async(id) => {
+    try {
+         await axios.delete('http://localhost:4000/student/'+id)
+         window.location.reload()
+
+    }catch(err){
+        console.log(err);
+    }
+
+    }
+
+
   return (
     <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
         <div className='w-50 bg-white rounded p-3'> 
@@ -33,7 +46,7 @@ import {Link} from'react-router-dom';
                            <td>
                     
                             <Link to={`update/${data.ID}`} className='btn btn-primary'>Update</Link>
-                            <Link to={'delete'} className='btn btn-danger ms-2'>Delete</Link>
+                            <button className='btn btn-danger ms-2' onClick={e => handleDelete(data.ID)}>Delete</button>
                            </td>
 
                     </tr>  

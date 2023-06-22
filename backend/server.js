@@ -61,6 +61,9 @@ app.post('/create', (req, res) => {
       return res.json({ success: true, data });
     });
   });
+
+
+
   
 
 
@@ -79,6 +82,22 @@ app.post('/create', (req, res) => {
       }
     
       return res.json({ success: true, data });
+    });
+  });
+  
+
+
+  app.delete('/student/:id', (req, res) => {
+    const sql = "DELETE FROM student WHERE ID = ?";
+    const value = req.params.id;
+  
+    db.query(sql, value, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.json({ error: "Error occurred while deleting data." });
+      }
+  
+      return res.json({ success: true, result });
     });
   });
   
